@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #007BFF;
+            color: white;
+            text-align: center;
+        }
+
+        td {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Admin-Dashboard</h2>
+
+    <!-- Create a table to display users' data -->
+    <div class="container">
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Timestamp</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Data will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getDatabase, ref, onValue, onChildAdded, onChildChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2R5INGbSGbhzSlVPfA6b0hnng0ATFP54",
+            authDomain: "hosmac-36cf6.firebaseapp.com",
+            databaseURL: "https://hosmac-36cf6-default-rtdb.firebaseio.com",
+            projectId: "hosmac-36cf6",
+            storageBucket: "hosmac-36cf6.firebasestorage.app",
+            messagingSenderId: "583614031014",
+            appId: "1:583614031014:web:b8b818ab67d3c3a5d74067",
+            measurementId: "G-VWM0Q46Y54"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // References to Firebase data
+        const usersRef = ref(database, 'users');
+        const userLocationsRef = ref(database, 'user_locations');
+
+        // Reference to the table body
+        const userTableBody = document.getElementById('userTableBody');
+
+        // Fetch user data
+        onValue(usersRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const usersData = snapshot.val();
+                const userNames = {}; // A temporary object to store user names
+
+                // Store user names for reference later
+                for (let userKey in usersData) {
+                    userNames[userKey] = usersData[userKey].name;
+                }
+
+                // Fetch user locations from Firebase
+                onValue(userLocationsRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const locationData = snapshot.val();
+                        
+                        // Clear previous data
+                        userTableBody.innerHTML = "";
+
+                        // Loop through user locations
+                        for (let userId in locationData) {
+                            const userLocation = locationData[userId];
+                            const userName = userNames[userId] || "(No Name Provided)";
+                            const latitude = userLocation.latitude || "N/A";
+                            const longitude = userLocation.longitude || "N/A";
+                            const timestamp = userLocation.timestamp ? new Date(userLocation.timestamp).toLocaleString() : "No Timestamp";
+
+                            // Create a new table row for each user
+                            const row = `
+                                <tr>
+                                    <td>${userName}</td>
+                                    <td>${timestamp}</td>
+                                    <td>${latitude}</td>
+                                    <td>${longitude}</td>
+                                </tr>
+                            `;
+
+                            // Append the new row to the table
+                            userTableBody.innerHTML += row;
+                        }
+                    } else {
+                        userTableBody.innerHTML = "<tr><td colspan='4'>No location data available</td></tr>";
+                    }
+                });
+            } else {
+                userTableBody.innerHTML = "<tr><td colspan='4'>No user data available</td></tr>";
+            }
+        });
+
+        // Real-time update when a new user is added
+        onChildAdded(usersRef, (snapshot) => {
+            const newUser = snapshot.val();
+            const userId = snapshot.key;
+            const userName = newUser.name || "(No Name Provided)";
+
+            // Check if location data for the new user is available
+            const userLocation = userLocationsRef.child(userId);
+
+            userLocation.once('value').then((locationSnapshot) => {
+                const userLocationData = locationSnapshot.val();
+                const latitude = userLocationData ? userLocationData.latitude : "N/A";
+                const longitude = userLocationData ? userLocationData.longitude : "N/A";
+                const timestamp = userLocationData && userLocationData.timestamp ? new Date(userLocationData.timestamp).toLocaleString() : "No Timestamp";
+
+                // Add the new row dynamically to the table
+                const newRow = `
+                    <tr>
+                        <td>${userName}</td>
+                        <td>${timestamp}</td>
+                        <td>${latitude}</td>
+                        <td>${longitude}</td>
+                    </tr>
+                `;
+                userTableBody.innerHTML += newRow;
+            }).catch((error) => {
+                console.error('Error fetching location data:', error);
+            });
+        });
+
+        // Handling potential errors
+        onValue(usersRef, (snapshot) => {
+            if (snapshot.exists()) {
+                console.log("Data fetched successfully");
+            } else {
+                console.error("No data available.");
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
+
