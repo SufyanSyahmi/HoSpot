@@ -1,0 +1,5 @@
+<resources>
+
+    <string name = "my_map_api_key"> AIzaSyCKop1Fix0h56AlpR202O6Aet99nHAghqQ </string>
+    <string name="back" />
+</resources>

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "583614031014",
+    "firebase_url": "https://hosmac-36cf6-default-rtdb.firebaseio.com",
+    "project_id": "hosmac-36cf6",
+    "storage_bucket": "hosmac-36cf6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583614031014:android:fbc1eabd4a133c69d74067",
+        "android_client_info": {
+          "package_name": "com.example.hosmac"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxU2K9e6_N09lNXOGRpulZYu2IHRaEcMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

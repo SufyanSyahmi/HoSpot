@@ -1,0 +1,247 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".AboutActivity">
+
+    <!-- Custom Toolbar with Back Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:background="#000000"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Back Button Image -->
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="25dp"
+            android:layout_height="17dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Back Button"
+            android:src="@drawable/back_arrow"
+            android:tint="#FBF7F7" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:text="About HoSpot"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="About Us"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="This app helps users find nearby hospitals and track their location." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Our Developers"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Developer Info Grid -->
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Group : D1CDCS2405B" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Programme code : CDCS240" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Developer 1 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/border"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/picture1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Shahrul Nizam"
+                        android:textSize="16sp"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/studentIDshahrul"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2022477842"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <!-- Developer 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/border"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/picture2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Sufyan Syahmi"
+                        android:textSize="16sp"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/studentIDpiye"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2022484142"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <!-- Developer 3 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/border"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/picture3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Adam Putra"
+                        android:textSize="16sp"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/studentIDadam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2022462148"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <!-- Developer 4 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/border"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/picture4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Aiman Imran"
+                        android:textSize="16sp"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/studentIDimran"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2023622932"
+                        android:textAlignment="center" />
+                </LinearLayout>
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/linkgithub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="https://github.com/SufyanSyahmi/HoSpot.git"
+                android:textAlignment="center"
+                android:autoLink="web"
+                android:linksClickable="true" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="©️ 2025 HoSpot. All rights reserved."
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
